@@ -1,0 +1,53 @@
+<div class="select">
+  <form class="form" [formGroup]="form">
+    <div class="first">
+      <label>Choose Genre</label>
+      <select formControlName="genre">
+        <option [value]="genre">Choose Genre</option>
+        <option *ngFor="let genre of allGenres" [ngValue]="genre">{{genre}}</option>
+      </select>
+    </div>
+    <div class="second">
+      <label>Choose Year</label>
+      <select formControlName="year">
+        <option [value]="year">Choose Year</option>
+        <option *ngFor="let year of allYears" [ngValue]="year">{{year}}</option>
+      </select>
+    </div>
+    <button class="btn btnSub btn-danger" type="submit" (click)="onSelect()">Submit</button>
+  </form>
+</div>
+<div>
+  <button class="btnNew btn btn-outline-success" (click)="onCreate()">New</button>
+  <button class="btnNew btn btn-outline-success" (click)="onUpdate()">Update</button>
+  <table class="table table-bordered table-danger table-striped">
+    <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Director</th>
+      <th>Actors</th>
+      <th>Genres</th>
+      <th>Year</th>
+      <th>Have Oscar</th>
+      <th>Rating In My Opinion</th>
+    </tr>
+    </thead>
+    <tbody class="table-secondary">
+    <tr *ngFor="let movie of allMovies | paginate: {itemsPerPage:12,currentPage:pageNumber};">
+      <td class="id">{{movie.id}}</td>
+      <td class="name">{{movie.name}}</td>
+      <td class="director">{{movie.director}}</td>
+      <td class="actor">{{movie.actors}}</td>
+      <td>{{movie.genres}}</td>
+      <td class="year">{{movie.year}}</td>
+      <td class="oscar">{{movie.haveOscar ? "Yes" : "No"}}</td>
+      <td class="rating">{{movie.ratingInMyOpinion}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+  </table>
+  <br>
+  <pagination-controls class="pagination" (pageChange)="pageNumber=$event"></pagination-controls>
+</div>

@@ -1,0 +1,49 @@
+<h3>Please fill out the form:</h3>
+<form [formGroup]="form" >
+  <div class="controles-container">
+    <label class="col-form-label-sm">
+      Name
+      <input formControlName="name">
+    </label>
+    <br>
+    <label class="col-form-label-sm">
+      Director
+      <input formControlName="director">
+    </label>
+    <br>
+    <label class="col-form-label-sm">
+      Actors
+    </label>
+    <label class="col-form-label-sm">
+      <input formControlName="actors">
+    </label>
+    <br>
+    <label class="col-form-label-sm">
+      Genres
+    </label>
+    <label class="col-form-label-sm">
+      <input formControlName="genres">
+    </label>
+    <br>
+    <label class="col-form-label-sm">
+      Year
+    </label>
+    <label class="col-form-label-sm">
+      <input type="number" formControlName="year">
+    </label>
+    <br>
+    Have Oscar?
+    <input type="checkbox" formControlName="haveOscar">
+    <br>
+    <label class="col-form-label-sm">
+      Rating In My Opinion
+    </label>
+    <label class="col-form-label-sm">
+      <input type="number" formControlName="ratingInMyOpinion">
+    </label>
+    <br>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-success" (click)="onUpdate()">Submit</button>
+  <button type="reset" class="close btn btn-danger" (click)="onReset()">Close</button>
+</form>

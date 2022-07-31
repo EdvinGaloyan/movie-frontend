@@ -1,0 +1,30 @@
+table {
+  margin: 0 auto;
+  width: 90%;
+}
+.select{
+  width: 90%;
+  margin: 0 auto;
+}
+.form {
+  margin: 20px 0;
+  display: flex;
+}
+.btnNew{
+  margin:0 0 10px 5%;
+}
+.btnSub{
+  margin-left: 5px;
+}
+pagination-controls {
+  margin-left: 2%
+}
+label,select{
+  font-family: "Adobe Ming Std L";
+  font-size: 18px;
+  height: 35px;
+  margin-right: 5px;
+}
+.second{
+  margin-left: 10px;
+}
