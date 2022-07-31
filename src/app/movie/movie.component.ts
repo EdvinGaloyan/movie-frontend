@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MovieService} from "./movie.service.service";
 import {MovieModel} from "./movie.model";
 import {MatDialog} from "@angular/material/dialog";
@@ -11,7 +11,7 @@ import {UpdateComponent} from "../update/update.component";
   templateUrl: './movie.component.html',
   styleUrls: ['./movie.component.css']
 })
-export class MovieComponent implements OnInit, OnChanges {
+export class MovieComponent implements OnInit {
   allMovies: MovieModel[];
   pageNumber: number = 1;
   allGenres: Set<string>;
@@ -23,11 +23,6 @@ export class MovieComponent implements OnInit, OnChanges {
   constructor(private movieService: MovieService,
               private dialog: MatDialog) {
   }
-
-  ngOnChanges(): void {
-    console.log("1")
-  }
-
 
   ngOnInit(): void {
     Array.of(this.allGenres);
