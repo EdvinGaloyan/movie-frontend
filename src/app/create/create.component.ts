@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MovieService} from "../movie/movie.service.service";
 import {MatDialogRef} from "@angular/material/dialog";
-import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+// @ts-ignore
 
 @Component({
   selector: 'app-create',
