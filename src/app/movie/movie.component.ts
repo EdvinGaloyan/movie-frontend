@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {CreateComponent} from "../create/create.component";
 import {FormControl, FormGroup} from "@angular/forms";
 import {UpdateComponent} from "../update/update.component";
+import {zip} from "rxjs";
 
 @Component({
   selector: 'app-movie',
@@ -14,8 +15,8 @@ import {UpdateComponent} from "../update/update.component";
 export class MovieComponent implements OnInit {
   allMovies: MovieModel[];
   pageNumber: number = 1;
-  allGenres: Set<string>;
-  allYears: Set<number>;
+  allGenres: Set<any>;
+  allYears: Set<any>;
   form: FormGroup;
   genre: string = "noGenre";
   year: string = "0";
@@ -30,9 +31,18 @@ export class MovieComponent implements OnInit {
       genre: new FormControl(),
       year: new FormControl(),
     })
-    this.movieService.getAllGenres().subscribe(data => this.allGenres = data);
-    this.movieService.getAllMovies().subscribe(data => this.allMovies = data);
-    this.movieService.getAllYears().subscribe(data => this.allYears = data);
+    this.getObservables().subscribe(data=>{
+      this.allGenres = data[0];
+      this.allMovies = data[1];
+      this.allYears = data[2];
+    })
+  }
+
+  private getObservables(){
+    const $allGenres = this.movieService.getAllGenres();
+    const $allMovies = this.movieService.getAllMovies();
+    const $allReleaseYears = this.movieService.getAllYears();
+    return zip($allGenres,$allMovies,$allReleaseYears);
   }
 
   onCreate(): void {

@@ -20,10 +20,10 @@ export class MovieService {
 
   public getAllGenres(): Observable<Set<string>> {
     let genres = [];
-    return this.getAllMovies().pipe(mergeMap(movies => movies.map(movie => {
-      movie.genres.forEach(data => genres.push(data));
+    return this.getAllMovies().pipe(map(movie => {
+      movie.map(mov => mov.genres).forEach(gen => gen.forEach(g => genres.push(g)));
       return new Set(genres.sort((num1, num2) => num1.localeCompare(num2)));
-    })))
+    }))
   }
 
   public getAllYears(): Observable<Set<number>> {
@@ -53,7 +53,7 @@ export class MovieService {
       }).subscribe();
   }
 
-  public onUpdate(movieModel: MovieFormModel):void{
+  public onUpdate(movieModel: MovieFormModel): void {
     const name = movieModel.name;
     let movie: MovieModel = new MovieModel(movieModel.name,
       movieModel.director,
